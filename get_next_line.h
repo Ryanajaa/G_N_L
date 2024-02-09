@@ -6,7 +6,7 @@
 /*   By: jarunota <jarunota@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 20:17:12 by jarunota          #+#    #+#             */
-/*   Updated: 2024/02/09 15:08:09 by jarunota         ###   ########.fr       */
+/*   Updated: 2024/02/09 20:30:10 by jarunota         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,12 @@
 #  define BUFFER_SIZE 1024
 # endif
 
+# include <stdarg.h>
+# include <unistd.h>
+
 size_t		ft_strlen(const char *s);
+char		*ft_strchr(const char *s, int c);
+char		*ft_strdup(const char *s1);
 char		*ft_strjoin(const char *s1, const char *s2);
 char		*ft_substr(char const *s, unsigned int start, size_t len);
 static char	*ft_read(int fd, char **backup);

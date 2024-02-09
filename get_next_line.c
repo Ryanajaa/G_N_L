@@ -6,13 +6,14 @@
 /*   By: jarunota <jarunota@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 20:52:04 by jarunota          #+#    #+#             */
-/*   Updated: 2024/02/09 14:58:13 by jarunota         ###   ########.fr       */
+/*   Updated: 2024/02/09 20:44:40 by jarunota         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 #include <fcntl.h>
 #include <stdio.h>
+#include <stdlib.h>
 
 static char	*ft_read(int fd, char **backup)
 {
@@ -79,4 +80,25 @@ char	*get_next_line(int fd)
 	if (!line)
 		return (NULL);
 	return (line);
+}
+
+int	main(void)
+{
+	int		fd;
+	char	*line;
+
+	fd = open("test.txt", O_RDONLY);
+	if (fd == -1)
+	{
+		perror("Error opening file");
+		return (1);
+	}
+	line = get_next_line(fd);
+	while (line != NULL)
+	{
+		printf("%s\n", line);
+		free(line);
+	}
+	close(fd);
+	return (0);
 }

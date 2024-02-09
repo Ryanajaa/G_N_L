@@ -6,14 +6,13 @@
 /*   By: jarunota <jarunota@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 20:39:09 by jarunota          #+#    #+#             */
-/*   Updated: 2024/02/09 15:03:43 by jarunota         ###   ########.fr       */
+/*   Updated: 2024/02/09 20:43:52 by jarunota         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 #include <stdlib.h>
 #include <unistd.h>
-#include <fcntl.h>
 
 size_t	ft_strlen(const char	*s)
 {
@@ -25,26 +24,68 @@ size_t	ft_strlen(const char	*s)
 	return (i);
 }
 
-char	*ft_strjoin(const char *s1, const char *s2)
+char	*ft_strchr(const char *s, int c)
 {
-	size_t	len1;
-	size_t	len2;
-	char	*res;
+	while (*s)
+	{
+		if (*s == (unsigned char)c)
+			return ((char *)s);
+		s++;
+	}
+	if (*s == (unsigned char)c)
+		return ((char *)s);
+	return (NULL);
+}
 
-	if (!s1 && !s2)
+char	*ft_strdup(const char *s1)
+{
+	char	*str;
+	size_t	len;
+	size_t	i;
+
+	len = ft_strlen(s1);
+	str = (char *)malloc(len + 1);
+	i = 0;
+	if (!str)
 		return (NULL);
-	else if (!s1)
-		return (ft_strdup(s2));
-	else if (!s2)
-		return (ft_strdup(s1));
-	len1 = ft_strlen(s1);
-	len2 = ft_strlen(s2);
-	res = (char *)malloc(len1 + len2 + 1);
-	if (!res)
+	if (len + 1 > 0)
+	{
+		while (s1[i] && i < len)
+		{
+			str[i] = s1[i];
+			i++;
+		}
+		str[i] = '\0';
+	}
+	return (str);
+}
+
+char	*ft_strjoin(char const *s1, char const *s2)
+{
+	size_t	i;
+	size_t	size_s1;
+	char	*tab;
+
+	i = 0;
+	if (!s1 || !s2)
 		return (NULL);
-	ft_strlcpy(res, s1, len1 + len2 + 1);
-	ft_strlcpy(res + len1, s2, len2 + 1);
-	return (res);
+	size_s1 = ft_strlen(s1);
+	tab = (char *)malloc(((size_s1 + ft_strlen(s2)) + 1) * sizeof(char));
+	if (!tab)
+		return (NULL);
+	while (s1[i])
+	{
+		tab[i] = s1[i];
+		i++;
+	}
+	i = 0;
+	while (s2[i])
+	{
+		tab[size_s1 + i] = s2[i];
+		i++;
+	}
+	tab[size_s1 + i] = '\0';
+	return (tab);
 }
 
 char	*ft_substr(char const *s, unsigned int start, size_t len)
