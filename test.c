@@ -6,10 +6,9 @@
 /*   By: jarunota <jarunota@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 17:55:23 by jarunota          #+#    #+#             */
-/*   Updated: 2024/02/06 20:00:46 by jarunota         ###   ########.fr       */
+/*   Updated: 2024/02/06 20:06:33 by jarunota         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "get_next_line.h"
 
