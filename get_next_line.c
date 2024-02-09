@@ -3,17 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jarunota <jarunota@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jarunota <jarunota@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 20:52:04 by jarunota          #+#    #+#             */
-/*   Updated: 2024/02/09 20:44:40 by jarunota         ###   ########.fr       */
+/*   Updated: 2024/02/09 21:14:22 by jarunota         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 #include <fcntl.h>
 #include <stdio.h>
-#include <stdlib.h>
 
 static char	*ft_read(int fd, char **backup)
 {

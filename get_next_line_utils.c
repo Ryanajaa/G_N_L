@@ -3,16 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jarunota <jarunota@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jarunota <jarunota@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 20:39:09 by jarunota          #+#    #+#             */
-/*   Updated: 2024/02/09 20:43:52 by jarunota         ###   ########.fr       */
+/*   Updated: 2024/02/09 21:10:54 by jarunota         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-#include <stdlib.h>
-#include <unistd.h>
 
 size_t	ft_strlen(const char	*s)
 {

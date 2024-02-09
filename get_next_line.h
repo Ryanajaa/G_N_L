@@ -3,21 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jarunota <jarunota@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jarunota <jarunota@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 20:17:12 by jarunota          #+#    #+#             */
-/*   Updated: 2024/02/09 20:30:10 by jarunota         ###   ########.fr       */
+/*   Updated: 2024/02/09 21:10:46 by jarunota         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
 
-# ifdef BUFFER_SIZE
-#  define BUFFER_SIZE 1024
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 1000
 # endif
 
-# include <stdarg.h>
+# include <stdlib.h>
 # include <unistd.h>
 
 size_t		ft_strlen(const char *s);
