@@ -3,59 +3,80 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jarunota <jarunota@student.42bangkok.co    +#+  +:+       +#+        */
+/*   By: jarunota <jarunota@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 20:52:04 by jarunota          #+#    #+#             */
-/*   Updated: 2024/02/06 17:48:02 by jarunota         ###   ########.fr       */
+/*   Updated: 2024/02/09 14:58:13 by jarunota         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-#include <stdlib.h>
-#include <unistd.h>
 #include <fcntl.h>
+#include <stdio.h>
 
-char	*ft_read(int fd, char *buffer, char **backup)
-char	*ft_gnl()
+static char	*ft_read(int fd, char **backup)
 {
-	while ()
-	{
+	char	buf[BUFFER_SIZE + 1];
+	char	*temp_backup;
+	int		read_result;
 
+	read_result = read(fd, buf, BUFFER_SIZE);
+	if (read_result == -1 || read_result == 0)
+	{
+		if (*backup)
+			free(*backup);
+		*backup = NULL;
+		return (NULL);
 	}
+	buf[read_result] = '\0';
+	temp_backup = *backup;
+	*backup = ft_strjoin(temp_backup, buf);
+	free(temp_backup);
+	if (!*backup)
+		return (NULL);
+	return (*backup);
 }
-char	*ft_cutline()
+
+static char	*ft_cutline(char **backup)
 {
-	while ()
-	{
+	char	*line;
+	char	*temp_backup;
+	int		i;
 
+	i = 0;
+	while ((*backup)[i] && (*backup)[i] != '\n')
+		i++;
+	line = ft_substr(*backup, 0, i);
+	temp_backup = *backup;
+	*backup = ft_substr(*backup, i + 1, ft_strlen(*backup) - i);
+	free(temp_backup);
+	if (!line || !*backup)
+	{
+		free(line);
+		free(*backup);
+		return (NULL);
 	}
+	return (line);
 }
+
 char	*get_next_line(int fd)
 {
-	char		*buffer;
-	char		*ans;
+	char		*line;
 	static char	*backup;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
-	buffer = malloc(sizeof(char) *(BUFFER_SIZE + 1));
-	if (!buffer)
+	line = NULL;
+	while (!ft_strchr(backup, '\n'))
 	{
-		if (backup)
-			free(*backup);
-		*backup = NULL;
-		return (NULL);
+		if (!ft_read(fd, &backup))
+		{
+			free(line);
+			return (NULL);
+		}
 	}
-	ans = ft_read(fd, buffer, &backup);
-	free(buffer);
-	backup = ft_gnl(ans);
-	ans = ft_cutline(ans);
-	if (!ans)
-	{
-		if (backup)
-			free(*backup);
-		*backup = NULL;
+	line = ft_cutline(&backup);
+	if (!line)
 		return (NULL);
-	}
-	return (ans);
+	return (line);
 }
